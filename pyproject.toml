@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weekly-report-automator"
+version = "0.1.0"
+description = "Automates weekly reporting from Git and Antigravity IDE artifacts using Gemini AI."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "google-genai>=0.1.1",
+    "gspread>=6.0.0",
+    "google-auth>=2.0.0",
+    "openpyxl>=3.1.0",
+    "GitPython>=3.1.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "rich>=13.0.0",
+    "schedule>=1.2.0"
+]
+
+[project.scripts]
+weekly-report = "main:main"
+weekly-report-scheduler = "scheduler:run_report"
+
+[tool.setuptools]
+py-modules = ["main", "scheduler", "config"]
+packages = ["core", "collectors", "exporters", "notifications"]
