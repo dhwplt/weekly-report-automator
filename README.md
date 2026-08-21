@@ -51,10 +51,20 @@ weekly-report
 *Options:*
 - `weekly-report --dry-run`: Run the summarization and display results in the console without exporting to Excel/Sheets or sending notifications.
 
-### Automatic Scheduler
-To run the tool automatically (default is every Friday at 5:00 PM), run the scheduler and leave the terminal open:
+### Automatic Scheduler (Terminal)
+To run the tool automatically while leaving your terminal open, use:
 ```bash
 weekly-report-scheduler
+```
+
+### Automatic Scheduler (Background / Windows)
+If you don't want to leave a terminal open and want it to run silently in the background (even catching up if your laptop was asleep), run this command once in **PowerShell** (make sure you are in the project folder):
+```powershell
+$Action = New-ScheduledTaskAction -Execute '.\.venv\Scripts\python.exe' -Argument 'main.py' -WorkingDirectory (Get-Location).Path
+$Trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Friday -At 5:00PM
+$Task = Register-ScheduledTask -Action $Action -Trigger $Trigger -TaskName "WeeklyReportAutomator" -Description "Automated Friday Weekly Report"
+$Task.Settings.StartWhenAvailable = $true
+Set-ScheduledTask -InputObject $Task
 ```
 
 ## Features
