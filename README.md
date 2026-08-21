@@ -30,8 +30,12 @@ Open `.env` and fill out:
 - `PARENT_PROJECTS_DIR`: Comma-separated list of paths containing your Git repositories (e.g. `C:\Projects, ~\Documents\GitHub`). Default is `~/Projects`.
 - `GOOGLE_SHEET_NAME`: The exact name of your target Google Sheet.
 
-**4. Google Sheets Authentication**
-If you are syncing to Google Sheets, ask your team lead for the `service_account.json` key file. Drop that exact file into the root of this `weekly-report-automator` directory.
+**4. Google Sheets Authentication (Personal Reporting)**
+If you want to sync your reports to your own private Google Sheet:
+1. Create a new Google Sheet (e.g., "My TaskLog") and put that exact name in your `.env` file under `GOOGLE_SHEET_NAME`.
+2. Create a Service Account in your Google Cloud Console and generate a JSON key.
+3. Rename the downloaded key to `service_account.json` and place it in the root of this directory.
+4. Open your Google Sheet and click **Share**, then grant your new Service Account's email address **Editor** access.
 
 ---
 
